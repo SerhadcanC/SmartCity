@@ -11,10 +11,9 @@ class TrafficLight(mesa.Agent):
         self.waiting_time = 0
         self.status = "RED"
 
-    def update_vehicle_count(self):
-        """random increase"""
-        incoming_cars = self.random.randint(0, 5)
-        self.vehicle_count += incoming_cars
+    def update_vehicle_count(self, count):
+        """Update count based on sensor data"""
+        self.vehicle_count = count
 
     def calculate_priority_score(self):
         """priority calculation based on the number of vehicles and waiting time."""
@@ -34,8 +33,8 @@ class TrafficLight(mesa.Agent):
             self.waiting_time = 0
 
     def step(self):
-        self.update_vehicle_count()
-
+        # vehicle_count is now updated externally by the model before step()
+        
         if self.status == "RED" and self.vehicle_count > 0:
             self.waiting_time += 1
 

@@ -45,6 +45,12 @@ class TrafficModel(mesa.Model):
 
             self.junctions.append(junction)
 
+    def update_sensor_data(self, sensor_data):
+        """Update vehicle counts for all lights based on sensor data before a step."""
+        for light in self.traffic_lights:
+            if light.street_name in sensor_data:
+                light.update_vehicle_count(sensor_data[light.street_name])
+
     def step(self):
         for light in self.traffic_lights:
             light.step()
