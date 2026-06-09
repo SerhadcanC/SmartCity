@@ -1,6 +1,5 @@
-
-
 from vision_detector import VisionDetector
+
 street_sources = {
     "North_Main": None,   
     "South_Main": None,
@@ -10,7 +9,7 @@ street_sources = {
 
 detector = VisionDetector(
     street_sources=street_sources,
-    use_simulated=True,   # Gerçek kamera için False yap
+    use_simulated=True,   
     verbose=True,         
 )
 
@@ -20,6 +19,4 @@ for step in range(1, 6):
     print(f"--- Adım {step} ---")
     sensor_data = detector.detect_all()
     print(f"sensor_data: {sensor_data}\n")
-
 detector.release()
-
